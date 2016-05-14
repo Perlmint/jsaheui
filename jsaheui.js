@@ -4,6 +4,9 @@ holsori = new Array("ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ
 batchim = new Array(" ", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ");
 batchim_hoek = new Array(0, 2, 4, 4, 2, 5, 5, 3, 5, 7, 9, 9, 7, 9, 9, 8, 4, 4, 6, 2, 4, 1, 3, 4, 3, 4, 4, 3);
 required_elem = new Array(0, 0, 2, 2, 2, 2, 1, 0, 1, 0, 1, 0, 2, 0, 1, 0, 2, 2, 0);
+chinese_to_kr = {
+"仮":"가","伽":"가","佧":"가","佳":"가","假":"가"
+};
 
 //변수, variables
 var code_gonggan = new Array; //codespace
@@ -101,7 +104,9 @@ function dan_gye(han_beon){ //step; han_beon means whether it executes a single 
 			continue;
 		}
 		c = code_gonggan[y].charCodeAt(x);
-		if(c < 0xac00 || c > 0xd7a3){
+		if(c >= 0x4e00 && c <= 0x9fff){
+			c = chinese_to_kr[code_gonggan[y][x]].charCodeAt(0);
+		}else if(c < 0xac00 || c > 0xd7a3){
 			cursor_omgyeo();
 			continue;
 		}
