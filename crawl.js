@@ -2,6 +2,7 @@ var Crawler = require("crawler");
 var jsonfile = require('jsonfile');
 var _ = require('underscore');
 var util = require('util');
+var fs = require('fs');
 
 dict = {}
 
@@ -24,7 +25,8 @@ var krs = new Crawler({
         });
     },
     onDrain: function() {
-        jsonfile.writeFile('han_to_kr.js', dict, function (err) {
+        fs.writeFile('han_to_kr.js', 'chinese_to_kr = ')
+        jsonfile.writeFile('han_to_kr.js', dict, {"flag": 'a'}, function (err) {
             console.error(err);
         });
     }
