@@ -20,8 +20,10 @@ var krs = new Crawler({
             func_body = '[' + func_body.substr(func_body.indexOf('setCharInfo') + 12);
             args = eval(func_body.substr(0, func_body.indexOf(');')) + ']');
             ch = parseInt(args[2].substr(2), 16);
-            pro = args[args.length - 1].replace(',', '');
-            dict[ch] = pro;
+            pro = args[args.length - 1].replace(',', '').trim();
+            if (pro.length != 0) {
+                dict[ch] = pro;
+            }
         });
     },
     onDrain: function() {
