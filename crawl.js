@@ -33,7 +33,7 @@ var krs = new Crawler({
 base_url = 'http://www.koreanhistory.or.kr/newchar/grid_list.jsp?code_type=%d&codebase=%s'
 _.map([[1, 52, 159], [2, 512, 678]], function(e) {
     for (var i = e[1]; i <= e[2]; i++) {
-        url = util.format(base_url, e[0], i.toString(16));
+        url = util.format(base_url, e[0], i.toString(16).toUpperCase());
         krs.queue(url);
     }
 });
